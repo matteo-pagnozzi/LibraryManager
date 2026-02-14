@@ -1,5 +1,6 @@
 package com.example.librarymanager;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,8 +21,9 @@ public class BookController {
     }
 
     @GetMapping("/title/{id}")
-    public String getBookTitle(@PathVariable Long id){
-        return bookService.getTitleById(id);
+    public ResponseEntity<String> getBookTitle(@PathVariable Long id){
+        String title = bookService.getTitleById(id);
+        return ResponseEntity.ok(title);
     }
 
     @GetMapping("/author/{name}")
